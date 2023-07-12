@@ -1,0 +1,29 @@
+{
+	"version": "2.0.0",
+	"tasks": [
+		{
+			"type": "shell", // run this from anywhere in project without a c/c++ file having focus
+			"label": "C/C++: cl.exe build simple-shared-library", //change the task name to something meaningful
+			"command": "cl.exe",
+			"args": [
+				"/I", "include", //Important for OpenCV
+				"/EHsc", //the compiler assumes that functions declared as extern "C" never throw a C++ exception
+				"/LD", // this flag means output a dll not an executable
+				"/Fe:", "OpenCVWrapper.dll",
+				"OpenCVWrapper.cpp",
+				"lib\\opencv_world480.lib"
+			],
+			"options": {
+				"cwd": "${workspaceFolder}"
+			},
+			"problemMatcher": [
+				"$msCompile"
+			],
+			"group": {
+				"kind": "build",
+				"isDefault": true
+			},
+			"detail": "Build simple-shared-library dll"
+		}
+	]
+}
